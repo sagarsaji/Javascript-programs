@@ -1,0 +1,199 @@
+Q> Prime no's in the given list using Javascript
+
+
+const numbers = [2, 4, 7, 9, 11, 13, 17, 19, 20, 23];
+const primes = [];
+
+for (let i = 0; i < numbers.length; i++) {
+  let isPrime = true;
+  for (let j = 2; j < numbers[i]; j++) {
+    if (numbers[i] % j === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime && numbers[i] !== 1) {
+    primes.push(numbers[i]);
+  }
+}
+
+console.log(primes); // Output: [2, 7, 11, 13, 17, 19, 23]
+
+
+============================================================================================================================
+Q> Anagram program
+
+
+  const str1 = "listen";
+const str2 = "silent";
+
+const charCount1 = {};
+const charCount2 = {};
+
+for (let i = 0; i < str1.length; i++) {
+  const char = str1[i];
+  charCount1[char] = (charCount1[char] || 0) + 1;
+}
+
+for (let i = 0; i < str2.length; i++) {
+  const char = str2[i];
+  charCount2[char] = (charCount2[char] || 0) + 1;
+}
+
+let isAnagram = true;
+for (const char in charCount1) {
+  if (charCount1[char] !== charCount2[char]) {
+    isAnagram = false;
+    break;
+  }
+}
+
+if (isAnagram) {
+  console.log(`${str1} and ${str2} are anagrams!`);
+} else {
+  console.log(`${str1} and ${str2} are not anagrams.`);
+}
+------------------------------------------------------------------------------------------------------------------------
+Q> Fibanocci series
+
+
+const n = 10; 
+let a = 0, b = 1,c=0;
+console.log(a);
+console.log(b);
+for (let i = 2; i < n; i++) {
+  const c = a + b;
+  console.log(c);
+  a = b;
+  b = c;
+}
+
+--------------------------------------------------------------------------------------------------------------------
+Q> Using inheritence concepts in javascript,create a person basic information in the parent class.Child class should be a student,employee and father.
+
+
+
+class Person {
+  constructor(name, age, gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
+
+  introduce() {
+    console.log(`Hi, my name is ${this.name}, I am ${this.age} years old, and I identify as ${this.gender}.`);
+  }
+}
+
+class Student extends Person {
+  constructor(name, age, gender, grade) {
+    super(name, age, gender);
+    this.grade = grade;
+  }
+
+  study() {
+    console.log(`${this.name} is studying hard to get good grades.`);
+  }
+}
+
+class Employee extends Person {
+  constructor(name, age, gender, jobTitle) {
+    super(name, age, gender);
+    this.jobTitle = jobTitle;
+  }
+
+  work() {
+    console.log(`${this.name} is working hard as a ${this.jobTitle}.`);
+  }
+}
+
+class Father extends Person {
+  constructor(name, age, gender, children) {
+    super(name, age, gender);
+    this.children = children;
+  }
+
+  parent() {
+    console.log(`${this.name} is the proud father of ${this.children}.`);
+  }
+}
+
+----------------------------------------------------------------------------------------------------------------
+Q> Javascript program to convert roman numbers to numbers
+
+
+function romanToNum(roman) {
+  const romanNums = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000
+  };
+  let num = 0;
+  for (let i = 0; i < roman.length; i++) {
+    const current = romanNums[roman[i]];
+    const next = romanNums[roman[i + 1]];
+    if (next && next > current) {
+      num += next - current;
+      i++;
+    } else {
+      num += current;
+    }
+  }
+  return num;
+}
+const romanNumeral = 'XIV';
+const num = romanToNum(romanNumeral);
+console.log(num);
+
+
+---------------------------------------------------------------------------------------------------------------
+Q> Write a javascript function to find the pair of numbers in the list equals to the target number
+
+
+function findSumPairs(arr, target) {
+  let pairs = [];
+
+  // Loop through each element in the array
+  for (let i = 0; i < arr.length; i++) {
+    // Loop through each element after the current element
+    for (let j = i + 1; j < arr.length; j++) {
+      // Check if the sum of the two elements is equal to the target
+      if (arr[i] + arr[j] === target) {
+        pairs.push([arr[i], arr[j]]);
+      }
+    }
+  }
+
+  // Return the array of pairs
+  return pairs;
+}
+
+// Example usage
+const numbers = [1, 2, 3, 4, 5, 6];
+const target = 7;
+
+const pairs = findSumPairs(numbers, target);
+console.log(pairs); // Output: [[1, 6], [2, 5], [3, 4]]
+
+-------------------------------------------------------------------------------------------------------------------------
+Q> write a function to reverse a string and give some proper exception if the user is giving another languages
+
+
+function reverseString(string) {
+    if (!/^[a-zA-Z\s]+$/.test(string)) {
+        return "This function only supports English language";
+    }
+    else{
+       return string.split("").reverse().join(""); 
+    }
+  
+}
+let n= prompt("Enter string: ");
+let x=reverseString(n);
+console.log(x);
+  
+  ----------------------------------------------------------------------------------------------------------
