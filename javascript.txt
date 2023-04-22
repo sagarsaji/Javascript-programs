@@ -1,72 +1,92 @@
+Q> Anagram program without using sort function
+
+let s1 = prompt();
+let s2 = prompt();
+let flag = 0;
+let alp = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+let alpcount = new Array(26).fill(0);
+for(let i=0;i<s1.length;i++){
+    let ch = s1.charAt(i);
+    alpcount[ch.charCodeAt(0)-'a'.charCodeAt(0)]++;
+}
+for(let i=0;i<s2.length;i++){
+    let ch = s2.charAt(i);
+    alpcount[ch.charCodeAt(0)-'a'.charCodeAt(0)]--;
+}
+for(let i=0;i<alp.length;i++){
+    if(alpcount[i]==0){
+        flag = 0;
+    }
+    else{
+        flag = 1;
+        break;
+    }
+}
+if(flag==0){
+    console.log("anagram");
+}
+else{
+    console.log("not anagram");
+}
+
+============================================================================================================================
+
+
 Q> Prime no's in the given list using Javascript
 
 
-const numbers = [2, 4, 7, 9, 11, 13, 17, 19, 20, 23];
-const primes = [];
-
-for (let i = 0; i < numbers.length; i++) {
-  let isPrime = true;
-  for (let j = 2; j < numbers[i]; j++) {
-    if (numbers[i] % j === 0) {
-      isPrime = false;
-      break;
-    }
-  }
-  if (isPrime && numbers[i] !== 1) {
-    primes.push(numbers[i]);
-  }
+const arr = [2, 4, 7, 9, 11, 13, 17, 19, 20, 23];
+let prime = [];
+let count = 0;
+for(let i=0;i<arr.length;i++){
+    for(let j=1;j<=arr[i];j++){
+        if(arr[i]%j==0){
+            count++;
+        }
+    }
+    if(count==2){
+        prime.push(arr[i]);
+    }
+    count = 0;
 }
-
-console.log(primes); // Output: [2, 7, 11, 13, 17, 19, 23]
+console.log(prime);
 
 
 ============================================================================================================================
-Q> Anagram program
+Q> Anagram program using sort function
 
 
-  const str1 = "listen";
-const str2 = "silent";
-
-const charCount1 = {};
-const charCount2 = {};
-
-for (let i = 0; i < str1.length; i++) {
-  const char = str1[i];
-  charCount1[char] = (charCount1[char] || 0) + 1;
+let s1 = prompt();
+let s2 = prompt();
+let s3 = s1.split("").sort().join("");
+let s4 = s2.split("").sort().join("");
+if(s3==s4){
+    console.log("anagram");
 }
-
-for (let i = 0; i < str2.length; i++) {
-  const char = str2[i];
-  charCount2[char] = (charCount2[char] || 0) + 1;
-}
-
-let isAnagram = true;
-for (const char in charCount1) {
-  if (charCount1[char] !== charCount2[char]) {
-    isAnagram = false;
-    break;
-  }
-}
-
-if (isAnagram) {
-  console.log(`${str1} and ${str2} are anagrams!`);
-} else {
-  console.log(`${str1} and ${str2} are not anagrams.`);
+else{
+    console.log("not anagram");
 }
 ------------------------------------------------------------------------------------------------------------------------
 Q> Fibanocci series
 
-
-const n = 10; 
-let a = 0, b = 1,c=0;
-console.log(a);
-console.log(b);
-for (let i = 2; i < n; i++) {
-  const c = a + b;
-  console.log(c);
-  a = b;
-  b = c;
+const num = prompt();
+let fib = [];
+let n1=0,n2=1;
+for(let i=0;i<2;i++){
+    if(i==0){
+        fib.push(0);
+    }
+    if(i==1){
+        fib.push(1);
+    }
 }
+for(let i=2;i<num;i++){
+    let sum = n1+n2;
+    fib.push(sum);
+    n1 = n2;
+    n2 = sum;
+}
+console.log(fib);
 
 --------------------------------------------------------------------------------------------------------------------
 Q> Using inheritence concepts in javascript,create a person basic information in the parent class.Child class should be a student,employee and father.
@@ -122,32 +142,32 @@ class Father extends Person {
 Q> Javascript program to convert roman numbers to numbers
 
 
-function romanToNum(roman) {
-  const romanNums = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000
-  };
-  let num = 0;
-  for (let i = 0; i < roman.length; i++) {
-    const current = romanNums[roman[i]];
-    const next = romanNums[roman[i + 1]];
-    if (next && next > current) {
-      num += next - current;
-      i++;
-    } else {
-      num += current;
-    }
-  }
-  return num;
+const roman = {
+    "I":1,
+    "V":5,
+    "X": 10,
+    "L": 50,
+    "C": 100,
+    "D": 500,
+    "M": 1000
 }
-const romanNumeral = 'XIV';
-const num = romanToNum(romanNumeral);
-console.log(num);
+
+let val = prompt();
+let result = 0;
+let valsplit = val.split("");
+for(let i=0;i<val.length;i++){
+    let current = roman[valsplit[i]];
+    let next = roman[valsplit[i+1]];
+    if(next>current){
+        let sub = next-current;
+        result+=sub;
+        break;
+    }
+    else{
+        result+=current;
+    }
+}
+console.log(result);
 
 
 ---------------------------------------------------------------------------------------------------------------
